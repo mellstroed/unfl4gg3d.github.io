@@ -1,166 +1,113 @@
-// particles
-function initParticles() {
-    const c = document.getElementById('particles');
-    if (!c) return;
-    for (let i = 0; i < 22; i++) {
-        const p = document.createElement('div');
-        p.className = 'particle';
-        p.style.left = Math.random() * 100 + '%';
-        p.style.animationDuration = (Math.random() * 12 + 8) + 's';
-        p.style.animationDelay = (Math.random() * 10) + 's';
-        const s = (Math.random() * 2 + 1) + 'px';
-        p.style.width = p.style.height = s;
-        c.appendChild(p);
-    }
-}
-
-// minecraft particles
-function initMcParticles() {
-    const c = document.getElementById('mcParticles');
-    if (!c) return;
-    for (let i = 0; i < 45; i++) {
-        const p = document.createElement('div');
-        p.className = 'mc-dot';
-        p.style.left = Math.random() * 100 + '%';
-        p.style.top = Math.random() * 100 + '%';
-        p.style.animationDuration = (Math.random() * 18 + 10) + 's';
-        p.style.animationDelay = (Math.random() * 12) + 's';
-        p.style.setProperty('--tx', (Math.random() - 0.5) * 180 + 'px');
-        p.style.setProperty('--ty', (Math.random() - 0.5) * 180 + 'px');
-        const s = (Math.random() * 2 + 1) + 'px';
-        p.style.width = p.style.height = s;
-        c.appendChild(p);
-    }
-}
-
-// navbar scroll
-function initNav() {
-    const nav = document.querySelector('.nav');
-    window.addEventListener('scroll', () => {
-        nav.style.background = window.scrollY > 30
-            ? 'rgba(7,7,14,0.97)'
-            : 'rgba(7,7,14,0.8)';
-    });
-}
-
-// burger
-function initBurger() {
-    const btn = document.getElementById('burger');
-    const links = document.getElementById('navLinks');
-    if (!btn || !links) return;
-
-    btn.addEventListener('click', () => {
-        const open = links.classList.toggle('open');
-        const [a, b, c] = btn.querySelectorAll('span');
-        if (open) {
-            a.style.transform = 'rotate(45deg) translate(5px,5px)';
-            b.style.opacity = '0';
-            c.style.transform = 'rotate(-45deg) translate(5px,-5px)';
-        } else {
-            [a,b,c].forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
-        }
-    });
-
-    links.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-            links.classList.remove('open');
-            btn.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+document.addEventListener('DOMContentLoaded', () => {
+    // Burger Menu
+    const burger = document.getElementById('burger');
+    const navLinks = document.getElementById('navLinks');
+    if (burger && navLinks) {
+        burger.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+            const spans = burger.querySelectorAll('span');
+            if (navLinks.classList.contains('open')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
         });
-    });
-}
 
-// faq
-function initFaq() {
-    document.querySelectorAll('.faq-q').forEach(btn => {
+        // Close burger on click nav link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('open')) {
+                    navLinks.classList.remove('open');
+                    const spans = burger.querySelectorAll('span');
+                    spans[0].style.transform = 'none';
+                    spans[1].style.opacity = '1';
+                    spans[2].style.transform = 'none';
+                }
+            });
+        });
+    }
+
+    // FAQ Accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const btn = item.querySelector('.faq-q');
+        const ans = item.querySelector('.faq-a');
+        if (!btn || !ans) return;
+
         btn.addEventListener('click', () => {
-            const item = btn.closest('.faq-item');
-            const ans = item.querySelector('.faq-a');
-            const open = item.classList.contains('open');
-
-            document.querySelectorAll('.faq-item').forEach(i => {
-                i.classList.remove('open');
-                i.querySelector('.faq-a').style.maxHeight = '0';
+            const isActive = item.classList.contains('active');
+            
+            // Close all
+            faqItems.forEach(other => {
+                other.classList.remove('active');
+                const otherAns = other.querySelector('.faq-a');
+                if (otherAns) otherAns.style.maxHeight = null;
             });
 
-            if (!open) {
-                item.classList.add('open');
+            // Toggle current
+            if (!isActive) {
+                item.classList.add('active');
                 ans.style.maxHeight = ans.scrollHeight + 'px';
             }
         });
     });
-}
 
-// scroll animations
-function initAnim() {
-    const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-            if (e.isIntersecting) {
-                e.target.style.opacity = '1';
-                e.target.style.transform = 'translateY(0)';
-                obs.unobserve(e.target);
-            }
-        });
-    }, { threshold: 0.08 });
+    // Copy Command to Clipboard
+    const toast = document.getElementById('toast');
+    let toastTimeout;
 
-    document.querySelectorAll('.pop-card, .cheat-tile, .faq-item, .dl-box').forEach((el, i) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = `opacity 0.45s ease ${i * 0.05}s, transform 0.45s ease ${i * 0.05}s`;
-        obs.observe(el);
-    });
-}
-
-// scroll to download
-function initScrollDownload() {
-    document.querySelectorAll('.scroll-to-download').forEach(btn => {
-        btn.addEventListener('click', e => {
-            e.preventDefault();
-            document.getElementById('download')?.scrollIntoView({ behavior: 'smooth' });
-        });
-    });
-}
-
-// font switcher
-function initFonts() {
-    const toggle = document.getElementById('fontToggle');
-    const dropdown = document.getElementById('fontDropdown');
-    const options = document.querySelectorAll('.font-option');
-    if (!toggle || !dropdown) return;
-
-    const map = { default: '', pixel: 'font-pixel', slab: 'font-slab', google: 'font-google', moyenage: 'font-moyenage' };
-
-    const saved = localStorage.getItem('unfl_font') || 'default';
-    apply(saved);
-    document.querySelector(`.font-option[data-font="${saved}"]`)?.classList.add('active');
-
-    toggle.addEventListener('click', e => { e.stopPropagation(); dropdown.classList.toggle('open'); });
-    document.addEventListener('click', () => dropdown.classList.remove('open'));
-    dropdown.addEventListener('click', e => e.stopPropagation());
-
-    options.forEach(opt => {
-        opt.addEventListener('click', () => {
-            const f = opt.dataset.font;
-            options.forEach(o => o.classList.remove('active'));
-            opt.classList.add('active');
-            apply(f);
-            localStorage.setItem('unfl_font', f);
-            dropdown.classList.remove('open');
-        });
-    });
-
-    function apply(f) {
-        document.body.classList.remove('font-pixel', 'font-slab', 'font-google', 'font-moyenage');
-        if (map[f]) document.body.classList.add(map[f]);
+    function showToast(msg) {
+        if (!toast) return;
+        toast.textContent = msg || 'Команда скопирована!';
+        toast.classList.add('show');
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+            toast.classList.remove('show');
+        }, 2500);
     }
-}
 
-document.addEventListener('DOMContentLoaded', () => {
-    initParticles();
-    initMcParticles();
-    initNav();
-    initBurger();
-    initFaq();
-    initAnim();
-    initScrollDownload();
-    initFonts();
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetId = btn.getAttribute('data-target');
+            const targetElem = document.getElementById(targetId);
+            if (!targetElem) return;
+
+            const textToCopy = targetElem.innerText.trim();
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const btnText = btn.querySelector('.btn-text') || btn.querySelector('span');
+                const originalText = btnText ? btnText.textContent : '';
+                if (btnText) btnText.textContent = 'Скопировано!';
+                btn.style.background = 'var(--green)';
+                btn.style.color = '#05070b';
+
+                showToast('Команда скопирована в буфер обмена!');
+
+                setTimeout(() => {
+                    if (btnText) btnText.textContent = originalText;
+                    btn.style.background = '';
+                    btn.style.color = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Clipboard copy failed:', err);
+                showToast('Не удалось скопировать команду');
+            });
+        });
+    });
+
+    // Navbar Scroll Tint
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => {
+        if (!nav) return;
+        if (window.scrollY > 40) {
+            nav.style.background = 'rgba(7, 9, 14, 0.95)';
+            nav.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.5)';
+        } else {
+            nav.style.background = 'rgba(7, 9, 14, 0.85)';
+            nav.style.boxShadow = 'none';
+        }
+    });
 });
