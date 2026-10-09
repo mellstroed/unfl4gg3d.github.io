@@ -1014,9 +1014,10 @@ body {
 
 .dl-boxes-grid {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
     gap: 20px;
     align-items: stretch;
+    width: 100%;
 }
 
 .dl-card {
@@ -1027,6 +1028,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .dl-card.main-card {
@@ -1081,24 +1084,38 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 10px;
     padding: 14px 18px;
+    min-width: 0;
 }
 
 .spec-row {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    gap: 12px;
     font-size: 0.85rem;
+    padding: 2px 0;
 }
 
 .spec-k {
     color: var(--text-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
 }
+
 .spec-v {
     font-weight: 600;
     color: var(--text-pure);
+    white-space: nowrap;
 }
+
 .spec-v.hl-green {
     color: var(--emerald-accent);
     font-family: var(--font-mono);
+    font-size: 0.76rem;
+    background: rgba(52, 211, 153, 0.1);
+    padding: 2px 7px;
+    border-radius: 4px;
+    border: 1px solid rgba(52, 211, 153, 0.25);
 }
 
 .btn-dl-big {
@@ -1126,16 +1143,19 @@ body {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    min-width: 0;
 }
 
 .command-card {
     background: #09090b;
     border: 1px solid var(--border-subtle);
     border-radius: 16px;
-    padding: 26px 24px;
+    padding: 24px 22px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .command-card.cleaner-box {
@@ -1147,7 +1167,17 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
+    gap: 12px;
+    min-width: 0;
+}
+
+.cmd-head-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    min-width: 0;
 }
 
 .cmd-badge {
@@ -1159,17 +1189,22 @@ body {
     background: rgba(56, 189, 248, 0.12);
     color: var(--cyan-accent);
     border: 1px solid rgba(56, 189, 248, 0.25);
+    white-space: nowrap;
 }
 
 .cmd-badge.red {
     background: rgba(239, 68, 68, 0.12);
     color: #f87171;
     border-color: rgba(239, 68, 68, 0.25);
+    white-space: nowrap;
 }
 
 .cmd-desc {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .terminal-copy-row {
@@ -1179,8 +1214,9 @@ body {
     padding: 12px 14px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 12px;
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .terminal-copy-row code {
@@ -1189,7 +1225,17 @@ body {
     color: #cbd5e1;
     overflow-x: auto;
     white-space: nowrap;
-    flex: 1;
+    width: 100%;
+    min-width: 0;
+    padding-bottom: 2px;
+}
+
+.terminal-copy-row code::-webkit-scrollbar {
+    height: 4px;
+}
+.terminal-copy-row code::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
 }
 
 .btn-copy {
@@ -1207,10 +1253,12 @@ body {
     gap: 6px;
     transition: all 0.15s ease;
     white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .btn-copy:hover {
     background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.25);
 }
 
 /* FAQ Accordion */
