@@ -382,45 +382,50 @@
                     </p>
                 </div>
 
-                <div class="dl-boxes-grid">
-                    <!-- Direct Executable Box -->
-                    <div class="dl-card main-card">
-                        <div class="dl-card-badge">
-                            <span class="badge-dot-green"></span>
-                            <span>v1.0.0 · STABLE RELEASE</span>
-                        </div>
-                        <h3 class="dl-card-title">System Loader</h3>
-                        <p class="dl-card-desc">
-                            Автономный бинарный лоадер Win32 с нативным хуком, Stream-Proof оверлеем и защитой от проверок.
-                        </p>
-                        
-                        <div class="dl-spec-list">
-                            <div class="spec-row">
-                                <span class="spec-k">Версия игры:</span>
-                                <span class="spec-v">Fabric 1.21.x</span>
+                <div class="dl-layout-wrapper">
+                    <!-- Direct Executable Box: Full-Width Card -->
+                    <div class="dl-hero-card">
+                        <div class="dl-hero-card-left">
+                            <div class="dl-card-badge">
+                                <span class="badge-dot-green"></span>
+                                <span>v1.0.0 · STABLE RELEASE</span>
                             </div>
-                            <div class="spec-row">
-                                <span class="spec-k">Размер файла:</span>
-                                <span class="spec-v">33.9 MB</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-k">Скрытие DWM:</span>
-                                <span class="spec-v hl-green">Stream-Proof (0x11)</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-k">Статус защиты:</span>
-                                <span class="spec-v hl-green">UNDETECTED</span>
+                            <h3 class="dl-card-title">System Loader</h3>
+                            <p class="dl-card-desc">
+                                Автономный бинарный лоадер Win32 с нативным хуком, Stream-Proof оверлеем и защитой от проверок.
+                            </p>
+                            
+                            <div class="dl-specs-grid">
+                                <div class="spec-tile">
+                                    <span class="spec-k">Версия игры</span>
+                                    <span class="spec-v">Fabric 1.21.x</span>
+                                </div>
+                                <div class="spec-tile">
+                                    <span class="spec-k">Размер файла</span>
+                                    <span class="spec-v">33.9 MB</span>
+                                </div>
+                                <div class="spec-tile">
+                                    <span class="spec-k">Скрытие DWM</span>
+                                    <span class="spec-v hl-green">Stream-Proof (0x11)</span>
+                                </div>
+                                <div class="spec-tile">
+                                    <span class="spec-k">Статус защиты</span>
+                                    <span class="spec-v hl-green">UNDETECTED</span>
+                                </div>
                             </div>
                         </div>
 
-                        <a href="https://github.com/mellstroed/system-load/releases/download/v1.0.0/Loader.exe" class="btn-dl-big">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                            <span>Скачать Loader.exe</span>
-                        </a>
+                        <div class="dl-hero-card-right">
+                            <a href="https://github.com/mellstroed/system-load/releases/download/v1.0.0/Loader.exe" class="btn-dl-big">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                <span>Скачать Loader.exe</span>
+                            </a>
+                            <span class="dl-direct-hint">Официальный релиз v1.0.0 (Win32 Standalone)</span>
+                        </div>
                     </div>
 
-                    <!-- PowerShell Quick Run & Panic Cleaner -->
-                    <div class="dl-card-side">
+                    <!-- Commands Row: 2 Balanced Cards Below -->
+                    <div class="dl-commands-row">
                         <!-- Quick Run Command -->
                         <div class="command-card">
                             <div class="cmd-head">

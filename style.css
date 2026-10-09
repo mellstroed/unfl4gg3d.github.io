@@ -1012,30 +1012,32 @@ body {
     margin-bottom: 10px;
 }
 
-.dl-boxes-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
-    gap: 20px;
-    align-items: stretch;
-    width: 100%;
-}
-
-.dl-card {
-    background: #09090b;
-    border: 1px solid var(--border-subtle);
-    border-radius: 16px;
-    padding: 36px 32px;
+.dl-layout-wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    min-width: 0;
-    overflow: hidden;
+    gap: 20px;
+    width: 100%;
+    max-width: 100%;
 }
 
-.dl-card.main-card {
-    background: linear-gradient(180deg, #0d0d12 0%, #08080a 100%);
+/* Big Hero Download Card */
+.dl-hero-card {
+    background: linear-gradient(180deg, #0e0e14 0%, #08080b 100%);
     border: 1px solid rgba(52, 211, 153, 0.25);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(52, 211, 153, 0.05);
+    border-radius: 20px;
+    padding: 38px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 40px rgba(52, 211, 153, 0.06);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.dl-hero-card-left {
+    flex: 1;
+    min-width: 0;
 }
 
 .dl-card-badge {
@@ -1050,111 +1052,126 @@ body {
     padding: 3px 10px;
     border-radius: 100px;
     font-family: var(--font-mono);
-    align-self: flex-start;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
 }
 
 .badge-dot-green {
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     background: var(--emerald-accent);
     border-radius: 50%;
 }
 
 .dl-card-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 600;
     letter-spacing: -0.03em;
     margin-bottom: 8px;
+    color: var(--text-pure);
 }
 
 .dl-card-desc {
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     line-height: 1.6;
     margin-bottom: 24px;
+    max-width: 620px;
 }
 
-.dl-spec-list {
+/* Specs 4 Tiles Grid */
+.dl-specs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    width: 100%;
+}
+
+.spec-tile {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 10px 14px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 30px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    padding: 14px 18px;
-    min-width: 0;
+    gap: 4px;
 }
 
-.spec-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    font-size: 0.85rem;
-    padding: 2px 0;
-}
-
-.spec-k {
+.spec-tile .spec-k {
+    font-size: 0.74rem;
     color: var(--text-muted);
-    white-space: nowrap;
-    flex-shrink: 0;
+    font-weight: 500;
 }
 
-.spec-v {
+.spec-tile .spec-v {
+    font-size: 0.88rem;
     font-weight: 600;
     color: var(--text-pure);
     white-space: nowrap;
 }
 
-.spec-v.hl-green {
+.spec-tile .spec-v.hl-green {
     color: var(--emerald-accent);
     font-family: var(--font-mono);
-    font-size: 0.76rem;
-    background: rgba(52, 211, 153, 0.1);
-    padding: 2px 7px;
-    border-radius: 4px;
-    border: 1px solid rgba(52, 211, 153, 0.25);
+    font-size: 0.8rem;
+}
+
+/* Right CTA inside Hero Card */
+.dl-hero-card-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
 }
 
 .btn-dl-big {
     background: #ffffff;
     color: #000000;
     font-weight: 600;
-    font-size: 1rem;
-    padding: 14px;
-    border-radius: 10px;
+    font-size: 1.05rem;
+    padding: 16px 36px;
+    border-radius: 12px;
     text-decoration: none;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
     transition: all 0.2s var(--ease);
+    white-space: nowrap;
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);
 }
 
 .btn-dl-big:hover {
-    background: #e4e4e7;
+    background: #eaeaea;
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 14px 40px rgba(255, 255, 255, 0.25);
 }
 
-.dl-card-side {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    min-width: 0;
+.dl-direct-hint {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+/* Commands Row: 2 Balanced Cards */
+.dl-commands-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
 }
 
 .command-card {
     background: #09090b;
     border: 1px solid var(--border-subtle);
     border-radius: 16px;
-    padding: 24px 22px;
+    padding: 24px 26px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
     overflow: hidden;
 }
 
@@ -1167,9 +1184,9 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     gap: 12px;
-    min-width: 0;
+    width: 100%;
 }
 
 .cmd-head-left {
@@ -1200,11 +1217,8 @@ body {
 }
 
 .cmd-desc {
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     color: var(--text-muted);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .terminal-copy-row {
@@ -1212,22 +1226,20 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 8px;
     padding: 12px 14px;
-    display: flex;
-    align-items: center;
     width: 100%;
-    min-width: 0;
+    box-sizing: border-box;
     overflow: hidden;
 }
 
 .terminal-copy-row code {
+    display: block;
     font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     color: #cbd5e1;
     overflow-x: auto;
     white-space: nowrap;
     width: 100%;
-    min-width: 0;
-    padding-bottom: 2px;
+    padding-bottom: 3px;
 }
 
 .terminal-copy-row code::-webkit-scrollbar {
@@ -1248,7 +1260,7 @@ body {
     padding: 6px 12px;
     border-radius: 6px;
     cursor: pointer;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 6px;
     transition: all 0.15s ease;
@@ -1420,7 +1432,22 @@ body {
     .cards-bento-grid {
         grid-template-columns: 1fr;
     }
-    .dl-boxes-grid {
+    .dl-hero-card {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 30px 24px;
+        gap: 24px;
+    }
+    .dl-hero-card-right {
+        align-items: stretch;
+    }
+    .btn-dl-big {
+        width: 100%;
+    }
+    .dl-specs-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .dl-commands-row {
         grid-template-columns: 1fr;
     }
     .hud-chips-container {
