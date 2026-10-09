@@ -1,113 +1,138 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Burger Menu
-    const burger = document.getElementById('burger');
-    const navLinks = document.getElementById('navLinks');
-    if (burger && navLinks) {
-        burger.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
-            const spans = burger.querySelectorAll('span');
-            if (navLinks.classList.contains('open')) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
-            } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
+    // Mobile Burger Menu
+    const burgerBtn = document.getElementById('burgerBtn');
+    const navMenu = document.getElementById('navMenu');
+    if (burgerBtn && navMenu) {
+        burgerBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('open');
         });
-
-        // Close burger on click nav link
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (navLinks.classList.contains('open')) {
-                    navLinks.classList.remove('open');
-                    const spans = burger.querySelectorAll('span');
-                    spans[0].style.transform = 'none';
-                    spans[1].style.opacity = '1';
-                    spans[2].style.transform = 'none';
-                }
-            });
+        navMenu.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => navMenu.classList.remove('open'));
         });
     }
 
-    // FAQ Accordion
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(item => {
-        const btn = item.querySelector('.faq-q');
-        const ans = item.querySelector('.faq-a');
-        if (!btn || !ans) return;
-
+    // GUI Category Selector
+    const catBtns = document.querySelectorAll('.cat-btn');
+    catBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            const isActive = item.classList.contains('active');
-            
-            // Close all
-            faqItems.forEach(other => {
-                other.classList.remove('active');
-                const otherAns = other.querySelector('.faq-a');
-                if (otherAns) otherAns.style.maxHeight = null;
-            });
+            catBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
 
-            // Toggle current
-            if (!isActive) {
-                item.classList.add('active');
-                ans.style.maxHeight = ans.scrollHeight + 'px';
+    // GUI Module Rows
+    const moduleRows = document.querySelectorAll('.module-row');
+    const inspTitle = document.querySelector('.insp-title');
+    const inspBind = document.querySelector('.insp-bind-chip span');
+
+    moduleRows.forEach(row => {
+        row.addEventListener('click', () => {
+            moduleRows.forEach(r => r.classList.remove('active'));
+            row.classList.add('active');
+
+            const name = row.querySelector('.mod-name')?.textContent || 'Module';
+            const bind = row.querySelector('.mod-bind')?.textContent || 'None';
+            if (inspTitle) inspTitle.textContent = name;
+            if (inspBind) inspBind.textContent = bind;
+        });
+
+        // Toggle switch
+        const sw = row.querySelector('.mod-switch');
+        if (sw) {
+            sw.addEventListener('click', (e) => {
+                e.stopPropagation();
+                sw.classList.toggle('on');
+            });
+        }
+    });
+
+    // Segmented Controls
+    document.querySelectorAll('.segmented-control').forEach(ctrl => {
+        const btns = ctrl.querySelectorAll('.seg-btn');
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+    });
+
+    // Condition Pills Toggle
+    document.querySelectorAll('.cond-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+            pill.classList.toggle('active');
+            if (pill.classList.contains('active')) {
+                if (!pill.textContent.startsWith('✓')) {
+                    pill.textContent = '✓ ' + pill.textContent.trim();
+                }
+            } else {
+                pill.textContent = pill.textContent.replace('✓', '').trim();
             }
         });
     });
 
-    // Copy Command to Clipboard
+    // Copy Buttons & Toast
     const toast = document.getElementById('toast');
-    let toastTimeout;
+    let toastTimer;
 
     function showToast(msg) {
         if (!toast) return;
-        toast.textContent = msg || 'Команда скопирована!';
+        toast.textContent = msg || 'Скопировано в буфер обмена!';
         toast.classList.add('show');
-        clearTimeout(toastTimeout);
-        toastTimeout = setTimeout(() => {
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
             toast.classList.remove('show');
-        }, 2500);
+        }, 2400);
     }
 
-    document.querySelectorAll('.copy-btn').forEach(btn => {
+    document.querySelectorAll('.btn-copy').forEach(btn => {
         btn.addEventListener('click', () => {
             const targetId = btn.getAttribute('data-target');
             const targetElem = document.getElementById(targetId);
             if (!targetElem) return;
 
-            const textToCopy = targetElem.innerText.trim();
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                const btnText = btn.querySelector('.btn-text') || btn.querySelector('span');
-                const originalText = btnText ? btnText.textContent : '';
-                if (btnText) btnText.textContent = 'Скопировано!';
-                btn.style.background = 'var(--green)';
-                btn.style.color = '#05070b';
+            const text = targetElem.innerText.trim();
+            navigator.clipboard.writeText(text).then(() => {
+                const label = btn.querySelector('span');
+                const orig = label ? label.textContent : '';
+                if (label) label.textContent = 'Готово!';
+                btn.style.borderColor = 'var(--emerald-accent)';
+                btn.style.color = 'var(--emerald-accent)';
 
                 showToast('Команда скопирована в буфер обмена!');
 
                 setTimeout(() => {
-                    if (btnText) btnText.textContent = originalText;
-                    btn.style.background = '';
+                    if (label) label.textContent = orig;
+                    btn.style.borderColor = '';
                     btn.style.color = '';
                 }, 2000);
-            }).catch(err => {
-                console.error('Clipboard copy failed:', err);
-                showToast('Не удалось скопировать команду');
+            }).catch(() => {
+                showToast('Ошибка при копировании');
             });
         });
     });
 
-    // Navbar Scroll Tint
-    const nav = document.querySelector('.nav');
-    window.addEventListener('scroll', () => {
-        if (!nav) return;
-        if (window.scrollY > 40) {
-            nav.style.background = 'rgba(7, 9, 14, 0.95)';
-            nav.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.5)';
-        } else {
-            nav.style.background = 'rgba(7, 9, 14, 0.85)';
-            nav.style.boxShadow = 'none';
-        }
+    // FAQ Accordion
+    const faqRows = document.querySelectorAll('.faq-row');
+    faqRows.forEach(row => {
+        const trigger = row.querySelector('.faq-trigger');
+        const collapse = row.querySelector('.faq-collapse');
+        if (!trigger || !collapse) return;
+
+        trigger.addEventListener('click', () => {
+            const isOpen = row.classList.contains('active');
+
+            // Close others
+            faqRows.forEach(other => {
+                other.classList.remove('active');
+                const c = other.querySelector('.faq-collapse');
+                if (c) c.style.maxHeight = null;
+            });
+
+            if (!isOpen) {
+                row.classList.add('active');
+                collapse.style.maxHeight = collapse.scrollHeight + 'px';
+            }
+        });
     });
 });
