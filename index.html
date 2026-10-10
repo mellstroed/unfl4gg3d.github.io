@@ -95,163 +95,6 @@
                 </div>
             </div>
 
-            <!-- In-game GUI & Topbar Interactive Mockup (Like systemdlc) -->
-            <div class="hero-gui-mockup" id="gui">
-                <div class="gui-window-frame">
-                    <!-- Topbar -->
-                    <div class="gui-topbar">
-                        <div class="gui-topbar-left">
-                            <div class="gui-logo-mark">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-                            </div>
-                            <span class="gui-brand-name">System</span>
-                        </div>
-
-                        <div class="gui-categories-nav">
-                            <button class="cat-btn active" data-cat="combat">Combat</button>
-                            <button class="cat-btn" data-cat="render">Render</button>
-                            <button class="cat-btn" data-cat="movement">Movement</button>
-                            <button class="cat-btn" data-cat="utility">Utility</button>
-                            <button class="cat-btn" data-cat="player">Player</button>
-                            <button class="cat-btn" data-cat="world">World</button>
-                        </div>
-
-                        <div class="gui-topbar-right">
-                            <span class="gui-status-chip"><span class="chip-dot"></span> 1.21.x</span>
-                            <div class="gui-window-dots">
-                                <span class="w-dot"></span>
-                                <span class="w-dot"></span>
-                                <span class="w-dot"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Main GUI Workspace -->
-                    <div class="gui-body-split">
-                        <!-- Left Sidebar: Modules List -->
-                        <div class="gui-sidebar">
-                            <div class="gui-search-box">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                                <span>Поиск модулей...</span>
-                            </div>
-
-                            <div class="gui-module-list">
-                                <div class="module-row active" data-module="aura">
-                                    <div class="mod-meta">
-                                        <span class="mod-name">Function</span>
-                                        <span class="mod-bind">W</span>
-                                    </div>
-                                    <div class="mod-switch on"></div>
-                                </div>
-                                <div class="module-row" data-module="aimAssist">
-                                    <div class="mod-meta">
-                                        <span class="mod-name">AimAssist</span>
-                                        <span class="mod-bind">None</span>
-                                    </div>
-                                    <div class="mod-switch on"></div>
-                                </div>
-                                <div class="module-row" data-module="esp">
-                                    <div class="mod-meta">
-                                        <span class="mod-name">Elements</span>
-                                        <span class="mod-bind">None</span>
-                                    </div>
-                                    <div class="mod-switch on"></div>
-                                </div>
-                                <div class="module-row" data-module="notifications">
-                                    <div class="mod-meta">
-                                        <span class="mod-name">Notifications</span>
-                                        <span class="mod-bind">None</span>
-                                    </div>
-                                    <div class="mod-switch on"></div>
-                                </div>
-                                <div class="module-row" data-module="waypoints">
-                                    <div class="mod-meta">
-                                        <span class="mod-name">Waypoints</span>
-                                        <span class="mod-bind">N</span>
-                                    </div>
-                                    <div class="mod-switch"></div>
-                                </div>
-                                <div class="module-row" data-module="interface">
-                                    <div class="mod-meta">
-                                        <span class="mod-name">Interface</span>
-                                        <span class="mod-bind">RSHIFT</span>
-                                    </div>
-                                    <div class="mod-switch on"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Right Panel: Module Inspector (Function Settings) -->
-                        <div class="gui-inspector">
-                            <div class="insp-header">
-                                <div>
-                                    <h3 class="insp-title">Function</h3>
-                                    <span class="insp-sub">Настройка боевого модуля прямо в реальном времени</span>
-                                </div>
-                                <div class="insp-bind-chip">Бинд: <span>W</span></div>
-                            </div>
-
-                            <div class="insp-content-scroll">
-                                <!-- Presets -->
-                                <div class="setting-group">
-                                    <label class="setting-label">Пресет</label>
-                                    <p class="setting-desc">Выберите пресет под один из стилей поведения.</p>
-                                    <div class="segmented-control">
-                                        <button class="seg-btn active">Сбалансированный</button>
-                                        <button class="seg-btn">Лёгкий</button>
-                                        <button class="seg-btn">Тяжёлый</button>
-                                    </div>
-                                </div>
-
-                                <!-- Attack Mode -->
-                                <div class="setting-group">
-                                    <label class="setting-label">Режим</label>
-                                    <p class="setting-desc">Умный адаптируется под анимации, остальные — фиксированные.</p>
-                                    <div class="segmented-control">
-                                        <button class="seg-btn active">Умный</button>
-                                        <button class="seg-btn">Строгий</button>
-                                        <button class="seg-btn">Мягкий</button>
-                                    </div>
-                                </div>
-
-                                <!-- Conditions Pills -->
-                                <div class="setting-group">
-                                    <label class="setting-label">Условия</label>
-                                    <p class="setting-desc">Условия, при которых функция будет работать.</p>
-                                    <div class="conditions-grid">
-                                        <span class="cond-pill active">✓ Только с оружием</span>
-                                        <span class="cond-pill active">✓ Ломать щиты</span>
-                                        <span class="cond-pill active">✓ В воздухе</span>
-                                        <span class="cond-pill active">✓ При спринте</span>
-                                        <span class="cond-pill">Сквозь стены</span>
-                                    </div>
-                                </div>
-
-                                <!-- Range Slider -->
-                                <div class="setting-group">
-                                    <div class="setting-row-between">
-                                        <label class="setting-label">Рабочая дальность</label>
-                                        <span class="setting-val-tag">3.8 блок(ов)</span>
-                                    </div>
-                                    <div class="slider-track"><div class="slider-fill" style="width: 72%;"></div></div>
-                                </div>
-
-                                <!-- Stream-Proof Exclusion Toggle -->
-                                <div class="setting-group highlight-box">
-                                    <div class="setting-row-between">
-                                        <div>
-                                            <span class="hl-badge">WDA 0x11</span>
-                                            <div class="setting-label-hl">Stream-Proof Capture Exclusion</div>
-                                            <div class="setting-desc-hl">Аппаратная невидимость на демонстрации экрана Discord и в OBS</div>
-                                        </div>
-                                        <div class="toggle-pill active">ACTIVE</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
 
         <!-- Advanced Features Grid (Продвинутые возможности) -->
@@ -266,7 +109,7 @@
 
                 <div class="cards-bento-grid">
                     <!-- Card 1: Ingame GUI -->
-                    <div class="bento-card card-gui">
+                    <div class="bento-card card-gui" id="gui">
                         <div class="bento-text">
                             <span class="card-num">01</span>
                             <h3 class="bento-title">Игровой GUI.</h3>
@@ -352,7 +195,7 @@
                         <div class="notif-feed-preview">
                             <div class="feed-item">
                                 <span class="f-dot emerald"></span>
-                                <div class="f-text"><strong>[System]</strong> Модуль Function успешно заинжекчен</div>
+                                <div class="f-text"><strong>[System]</strong> Конфиг успешно активирован</div>
                                 <span class="f-time">now</span>
                             </div>
                             <div class="feed-item">
