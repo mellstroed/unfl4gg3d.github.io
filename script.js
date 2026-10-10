@@ -1,5 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Mobile Burger Menu
+    // 1. Splash Intro Screen (Smooth fade out)
+    const siteIntro = document.getElementById('siteIntro');
+    if (siteIntro) {
+        setTimeout(() => {
+            siteIntro.classList.add('fade-out');
+            setTimeout(() => {
+                siteIntro.style.display = 'none';
+            }, 800);
+        }, 1600);
+    }
+
+    // 2. Mobile Burger Menu
     const burgerBtn = document.getElementById('burgerBtn');
     const navMenu = document.getElementById('navMenu');
     if (burgerBtn && navMenu) {
@@ -11,7 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // GUI Category Selector
+    // 3. GUI Mockup Interactions (1:1 systemdlc replica)
+    // Categories
     const catBtns = document.querySelectorAll('.cat-btn');
     catBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -20,20 +32,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // GUI Module Rows
+    // Search filter for modules
+    const searchInput = document.getElementById('guiModuleSearch');
     const moduleRows = document.querySelectorAll('.module-row');
-    const inspTitle = document.querySelector('.insp-title');
-    const inspBind = document.querySelector('.insp-bind-chip span');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            moduleRows.forEach(row => {
+                const name = row.querySelector('.mod-name')?.textContent.toLowerCase() || '';
+                if (name.includes(query)) {
+                    row.style.display = 'flex';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    }
 
+    // Module rows & inspector view switching
+    const inspViews = document.querySelectorAll('.insp-view');
     moduleRows.forEach(row => {
         row.addEventListener('click', () => {
             moduleRows.forEach(r => r.classList.remove('active'));
             row.classList.add('active');
 
-            const name = row.querySelector('.mod-name')?.textContent || 'Module';
-            const bind = row.querySelector('.mod-bind')?.textContent || 'None';
-            if (inspTitle) inspTitle.textContent = name;
-            if (inspBind) inspBind.textContent = bind;
+            const viewName = row.getAttribute('data-view');
+            inspViews.forEach(v => {
+                if (v.id === `view-${viewName}`) {
+                    v.style.display = 'block';
+                } else {
+                    v.style.display = 'none';
+                }
+            });
         });
 
         // Toggle switch
@@ -61,17 +91,38 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.cond-pill').forEach(pill => {
         pill.addEventListener('click', () => {
             pill.classList.toggle('active');
+            const cleanText = pill.textContent.replace('✓', '').trim();
             if (pill.classList.contains('active')) {
-                if (!pill.textContent.startsWith('✓')) {
-                    pill.textContent = '✓ ' + pill.textContent.trim();
-                }
+                pill.textContent = '✓ ' + cleanText;
             } else {
-                pill.textContent = pill.textContent.replace('✓', '').trim();
+                pill.textContent = cleanText;
             }
         });
     });
 
-    // Copy Buttons & Toast
+    // Pre-distance interactive range slider
+    const rangeSlider = document.getElementById('rangeSlider');
+    const rangeVal = document.getElementById('rangeVal');
+    if (rangeSlider && rangeVal) {
+        rangeSlider.addEventListener('input', (e) => {
+            rangeVal.textContent = `${parseFloat(e.target.value).toFixed(1)} блок(ов)`;
+        });
+    }
+
+    // WDA stream-proof toggle pill
+    const wdaToggle = document.getElementById('wdaToggle');
+    if (wdaToggle) {
+        wdaToggle.addEventListener('click', () => {
+            wdaToggle.classList.toggle('active');
+            if (wdaToggle.classList.contains('active')) {
+                wdaToggle.textContent = 'ВКЛЮЧЕНО';
+            } else {
+                wdaToggle.textContent = 'ОТКЛЮЧЕНО';
+            }
+        });
+    }
+
+    // 4. Copy Buttons & Toast
     const toast = document.getElementById('toast');
     let toastTimer;
 
@@ -96,8 +147,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const label = btn.querySelector('span');
                 const orig = label ? label.textContent : '';
                 if (label) label.textContent = 'Готово!';
-                btn.style.borderColor = 'var(--emerald-accent)';
-                btn.style.color = 'var(--emerald-accent)';
+                btn.style.borderColor = 'rgba(255, 255, 255, 0.4)';
+                btn.style.color = '#ffffff';
 
                 showToast('Команда скопирована в буфер обмена!');
 
@@ -112,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // FAQ Accordion
+    // 5. FAQ Accordion
     const faqRows = document.querySelectorAll('.faq-row');
     faqRows.forEach(row => {
         const trigger = row.querySelector('.faq-trigger');

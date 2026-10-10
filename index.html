@@ -7,10 +7,17 @@
     <meta name="description" content="Продвинутый Minecraft клиент с первоклассными модификациями для высокой производительности и расширенных возможностей.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Geist:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Geist:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-black">
+    <!-- Intro Splash Screen (systemdlc.com) -->
+    <div id="siteIntro" class="site-intro-overlay">
+        <div class="intro-center-box">
+            <h1 class="intro-headline">System raises<br>the bar</h1>
+        </div>
+    </div>
+
     <!-- Ambient glowing backgrounds & subtle grid -->
     <div class="ambient-glow"></div>
     <div class="hb-grid-pattern"></div>
@@ -27,14 +34,13 @@
                     </svg>
                 </div>
                 <span class="logo-title">System</span>
-                <span class="logo-pill">1.21.x</span>
+                <span class="logo-pill">1.21.4 - 1.21.11</span>
             </a>
 
             <nav class="nav-center-menu" id="navMenu">
                 <a href="#features" class="nav-item">Возможности</a>
                 <a href="#gui" class="nav-item">Игровой GUI</a>
                 <a href="#hud" class="nav-item">HUD элементы</a>
-                <a href="#configs" class="nav-item">Конфиги</a>
                 <a href="#download" class="nav-item active-accent">Установка</a>
                 <a href="#faq" class="nav-item">FAQ</a>
             </nav>
@@ -61,7 +67,7 @@
             <div class="hero-top-info">
                 <div class="hero-badge">
                     <span class="badge-dot-live"></span>
-                    <span>System Client 1.21.x &nbsp;·&nbsp; Stream-Proof Native</span>
+                    <span>System Client 1.21.4 - 1.21.11 &nbsp;·&nbsp; Stream-Proof Native</span>
                 </div>
 
                 <h1 class="hero-main-title">
@@ -91,10 +97,306 @@
                     <span class="tag-pill">✦ Плавные анимации</span>
                     <span class="tag-pill">✦ Stream-Proof (WDA)</span>
                     <span class="tag-pill">✦ Высокий FPS</span>
-                    <span class="tag-pill">✦ Fabric 1.21.x</span>
+                    <span class="tag-pill">✦ Fabric 1.21.4 - 1.21.11</span>
                 </div>
             </div>
 
+            <!-- In-game GUI & Topbar Interactive Mockup (systemdlc.com 1:1) -->
+            <div class="hero-gui-mockup" id="gui">
+                <div class="gui-window-frame">
+                    <!-- Topbar -->
+                    <div class="gui-topbar">
+                        <div class="gui-topbar-left">
+                            <div class="gui-logo-mark">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                            </div>
+                            <span class="gui-brand-name">System</span>
+                        </div>
+
+                        <div class="gui-categories-nav">
+                            <button class="cat-btn active" data-cat="combat">Combat</button>
+                            <button class="cat-btn" data-cat="render">Render</button>
+                            <button class="cat-btn" data-cat="movement">Movement</button>
+                            <button class="cat-btn" data-cat="utility">Utility</button>
+                            <button class="cat-btn" data-cat="player">Player</button>
+                            <button class="cat-btn" data-cat="world">World</button>
+                        </div>
+
+                        <div class="gui-topbar-right">
+                            <span class="gui-status-chip"><span class="chip-dot"></span> 1.21.4 - 1.21.11</span>
+                            <div class="gui-window-dots">
+                                <span class="w-dot"></span>
+                                <span class="w-dot"></span>
+                                <span class="w-dot"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main GUI Workspace -->
+                    <div class="gui-body-split">
+                        <!-- Left Panel: Modules list with live search -->
+                        <div class="gui-sidebar">
+                            <div class="gui-search-box">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                <input type="text" id="guiModuleSearch" placeholder="Поиск модулей..." class="search-field">
+                            </div>
+
+                            <div class="gui-module-list" id="guiModuleList">
+                                <div class="module-row active" data-module="function">
+                                    <div class="mod-meta">
+                                        <span class="mod-name">Function</span>
+                                        <span class="mod-bind">W</span>
+                                    </div>
+                                    <div class="mod-switch on"></div>
+                                </div>
+                                <div class="module-row" data-module="aimassist">
+                                    <div class="mod-meta">
+                                        <span class="mod-name">AimAssist</span>
+                                        <span class="mod-bind">None</span>
+                                    </div>
+                                    <div class="mod-switch on"></div>
+                                </div>
+                                <div class="module-row" data-module="elements">
+                                    <div class="mod-meta">
+                                        <span class="mod-name">Elements</span>
+                                        <span class="mod-bind">None</span>
+                                    </div>
+                                    <div class="mod-switch on"></div>
+                                </div>
+                                <div class="module-row" data-module="notifications">
+                                    <div class="mod-meta">
+                                        <span class="mod-name">Notifications</span>
+                                        <span class="mod-bind">None</span>
+                                    </div>
+                                    <div class="mod-switch on"></div>
+                                </div>
+                                <div class="module-row" data-module="waypoints">
+                                    <div class="mod-meta">
+                                        <span class="mod-name">Waypoints</span>
+                                        <span class="mod-bind">N</span>
+                                    </div>
+                                    <div class="mod-switch"></div>
+                                </div>
+                                <div class="module-row" data-module="interface">
+                                    <div class="mod-meta">
+                                        <span class="mod-name">Interface</span>
+                                        <span class="mod-bind">RSHIFT</span>
+                                    </div>
+                                    <div class="mod-switch on"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Panel: Dynamic Module Inspector -->
+                        <div class="gui-inspector" id="guiInspector">
+                            <!-- View: Function (default active) -->
+                            <div class="module-view active" id="view-function">
+                                <div class="insp-header">
+                                    <div>
+                                        <h3 class="insp-title">Function</h3>
+                                        <span class="insp-sub">Настройка боевого модуля прямо в реальном времени</span>
+                                    </div>
+                                    <div class="insp-bind-chip">Бинд: <span>W</span></div>
+                                </div>
+
+                                <div class="insp-content-scroll">
+                                    <!-- Presets -->
+                                    <div class="setting-group">
+                                        <label class="setting-label">Пресет</label>
+                                        <p class="setting-desc">Выберите пресет под один из стилей поведения.</p>
+                                        <div class="segmented-control">
+                                            <button class="seg-btn active">Сбалансированный</button>
+                                            <button class="seg-btn">Лёгкий</button>
+                                            <button class="seg-btn">Тяжёлый</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Attack Mode -->
+                                    <div class="setting-group">
+                                        <label class="setting-label">Режим</label>
+                                        <p class="setting-desc">Умный адаптируется под анимации, остальные — фиксированные.</p>
+                                        <div class="segmented-control">
+                                            <button class="seg-btn active">Умный</button>
+                                            <button class="seg-btn">Строгий</button>
+                                            <button class="seg-btn">Мягкий</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Conditions Pills -->
+                                    <div class="setting-group">
+                                        <label class="setting-label">Условия</label>
+                                        <p class="setting-desc">Условия, при которых функция будет работать.</p>
+                                        <div class="conditions-grid">
+                                            <span class="cond-pill active">✓ Только с оружием</span>
+                                            <span class="cond-pill active">✓ Ломать щиты</span>
+                                            <span class="cond-pill active">✓ В воздухе</span>
+                                            <span class="cond-pill active">✓ При спринте</span>
+                                            <span class="cond-pill">Сквозь стены</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Range Slider -->
+                                    <div class="setting-group">
+                                        <div class="setting-row-between">
+                                            <label class="setting-label">Рабочая дальность</label>
+                                            <span class="setting-val-tag" id="rangeValTag">3.8 блок(ов)</span>
+                                        </div>
+                                        <div class="slider-interactive-wrap">
+                                            <input type="range" min="1.0" max="6.0" step="0.1" value="3.8" class="gui-range-slider" id="rangeSlider">
+                                        </div>
+                                    </div>
+
+                                    <!-- Stream-Proof Exclusion Toggle -->
+                                    <div class="setting-group highlight-box">
+                                        <div class="setting-row-between">
+                                            <div>
+                                                <span class="hl-badge">WDA 0x11</span>
+                                                <div class="setting-label-hl">Stream-Proof Capture Exclusion</div>
+                                                <div class="setting-desc-hl">Аппаратная невидимость на демонстрации экрана Discord и в OBS</div>
+                                            </div>
+                                            <div class="toggle-pill active" id="wdaToggle">ACTIVE</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- View: AimAssist -->
+                            <div class="module-view" id="view-aimassist" style="display:none;">
+                                <div class="insp-header">
+                                    <div>
+                                        <h3 class="insp-title">AimAssist</h3>
+                                        <span class="insp-sub">Плавная доводка прицела для незаметной легитной игры</span>
+                                    </div>
+                                    <div class="insp-bind-chip">Бинд: <span>None</span></div>
+                                </div>
+                                <div class="insp-content-scroll">
+                                    <div class="setting-group">
+                                        <label class="setting-label">Плавность (Smooth)</label>
+                                        <p class="setting-desc">Скорость интерполяции угла обзора.</p>
+                                        <div class="slider-interactive-wrap">
+                                            <input type="range" min="1" max="10" step="0.5" value="7.5" class="gui-range-slider">
+                                        </div>
+                                    </div>
+                                    <div class="setting-group">
+                                        <label class="setting-label">Угол захвата (FOV)</label>
+                                        <p class="setting-desc">Максимальный угол до цели для активации.</p>
+                                        <div class="slider-interactive-wrap">
+                                            <input type="range" min="10" max="180" step="5" value="65" class="gui-range-slider">
+                                        </div>
+                                    </div>
+                                    <div class="setting-group">
+                                        <label class="setting-label">Приоритет</label>
+                                        <div class="segmented-control">
+                                            <button class="seg-btn active">Ближайший</button>
+                                            <button class="seg-btn">Меньше HP</button>
+                                            <button class="seg-btn">По прицелу</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- View: Elements -->
+                            <div class="module-view" id="view-elements" style="display:none;">
+                                <div class="insp-header">
+                                    <div>
+                                        <h3 class="insp-title">Elements</h3>
+                                        <span class="insp-sub">Отображение визуальных компонентов и экранного интерфейса</span>
+                                    </div>
+                                    <div class="insp-bind-chip">Бинд: <span>None</span></div>
+                                </div>
+                                <div class="insp-content-scroll">
+                                    <div class="setting-group">
+                                        <label class="setting-label">Отображаемые оверлеи</label>
+                                        <div class="conditions-grid">
+                                            <span class="cond-pill active">✓ Watermark</span>
+                                            <span class="cond-pill active">✓ ArmorHUD</span>
+                                            <span class="cond-pill active">✓ PotionStatus</span>
+                                            <span class="cond-pill active">✓ Keybinds</span>
+                                            <span class="cond-pill">TargetHUD</span>
+                                        </div>
+                                    </div>
+                                    <div class="setting-group">
+                                        <label class="setting-label">Масштаб элементов (Scale)</label>
+                                        <div class="slider-interactive-wrap">
+                                            <input type="range" min="50" max="150" step="5" value="100" class="gui-range-slider">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- View: Notifications -->
+                            <div class="module-view" id="view-notifications" style="display:none;">
+                                <div class="insp-header">
+                                    <div>
+                                        <h3 class="insp-title">Notifications</h3>
+                                        <span class="insp-sub">Системные всплывающие оповещения о событиях в игре</span>
+                                    </div>
+                                    <div class="insp-bind-chip">Бинд: <span>None</span></div>
+                                </div>
+                                <div class="insp-content-scroll">
+                                    <div class="setting-group">
+                                        <label class="setting-label">Типы уведомлений</label>
+                                        <div class="conditions-grid">
+                                            <span class="cond-pill active">✓ События боя</span>
+                                            <span class="cond-pill active">✓ Вход друзей</span>
+                                            <span class="cond-pill active">✓ Заряд тотемов</span>
+                                            <span class="cond-pill">Звуковой сигнал</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- View: Waypoints -->
+                            <div class="module-view" id="view-waypoints" style="display:none;">
+                                <div class="insp-header">
+                                    <div>
+                                        <h3 class="insp-title">Waypoints</h3>
+                                        <span class="insp-sub">Пространственные 3D метки координат в игровом мире</span>
+                                    </div>
+                                    <div class="insp-bind-chip">Бинд: <span>N</span></div>
+                                </div>
+                                <div class="insp-content-scroll">
+                                    <div class="setting-group">
+                                        <label class="setting-label">Параметры отображения</label>
+                                        <div class="conditions-grid">
+                                            <span class="cond-pill active">✓ Дистанция</span>
+                                            <span class="cond-pill active">✓ 3D Маяк</span>
+                                            <span class="cond-pill">Трассировка луча</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- View: Interface -->
+                            <div class="module-view" id="view-interface" style="display:none;">
+                                <div class="insp-header">
+                                    <div>
+                                        <h3 class="insp-title">Interface</h3>
+                                        <span class="insp-sub">Визуальный стиль, размытие и цветовая гамма клиента</span>
+                                    </div>
+                                    <div class="insp-bind-chip">Бинд: <span>RSHIFT</span></div>
+                                </div>
+                                <div class="insp-content-scroll">
+                                    <div class="setting-group">
+                                        <label class="setting-label">Режим отрисовки</label>
+                                        <div class="segmented-control">
+                                            <button class="seg-btn active">Монохром</button>
+                                            <button class="seg-btn">Прозрачный</button>
+                                            <button class="seg-btn">Неоновый</button>
+                                        </div>
+                                    </div>
+                                    <div class="setting-group">
+                                        <label class="setting-label">Прозрачность фона (Opacity)</label>
+                                        <div class="slider-interactive-wrap">
+                                            <input type="range" min="10" max="100" step="5" value="90" class="gui-range-slider">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Advanced Features Grid (Продвинутые возможности) -->
@@ -161,34 +463,10 @@
                         </div>
                     </div>
 
-                    <!-- Card 3: Web-Configs -->
-                    <div class="bento-card card-configs" id="configs">
-                        <div class="bento-text">
-                            <span class="card-num">03</span>
-                            <h3 class="bento-title">Веб-Конфиги.</h3>
-                            <p class="bento-desc">Настраивайте конфигурации прямо на сайте, делитесь конфигами с другими игроками, создавайте приватные конфиги.</p>
-                        </div>
-                        <div class="config-card-preview">
-                            <div class="cfg-top">
-                                <div class="cfg-name-row">
-                                    <span class="cfg-dot"></span>
-                                    <span class="cfg-title">Legit_04</span>
-                                    <span class="cfg-tag">PvP Config</span>
-                                </div>
-                                <span class="cfg-date">28.05.2026</span>
-                            </div>
-                            <p class="cfg-desc-text">Лёгкий конфиг Minecraft с оптимизированным визуалом и хитбоксами — улучшает читаемость и комфорт в PvP.</p>
-                            <div class="cfg-meta-bar">
-                                <span class="cfg-pill">Приватный ключ</span>
-                                <span class="cfg-status-ok">Активен</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 4: Elements & Notifications -->
+                    <!-- Card 3: Elements & Notifications -->
                     <div class="bento-card card-elements">
                         <div class="bento-text">
-                            <span class="card-num">04</span>
+                            <span class="card-num">03</span>
                             <h3 class="bento-title">Элементы & Уведомления.</h3>
                             <p class="bento-desc">Огромное количество различных элементов, уведомлений, списков информации, настройте все под себя.</p>
                         </div>
@@ -221,7 +499,7 @@
                     <span class="dl-eyebrow">БЫСТРЫЙ ЗАПУСК</span>
                     <h2 class="sec-big-title">Команды PowerShell</h2>
                     <p class="sec-big-subtitle">
-                        Официальный запуск System для Minecraft Fabric 1.21.x через консоль Windows. Никаких подозрительных exe-файлов в загрузках браузера — запуск и полная очистка в одну строчку.
+                        Официальный запуск System для Minecraft Fabric 1.21.4 - 1.21.11 через консоль Windows. Никаких подозрительных exe-файлов в загрузках браузера — запуск и полная очистка в одну строчку.
                     </p>
                 </div>
 
@@ -230,7 +508,7 @@
                     <div class="dl-specs-grid">
                         <div class="spec-tile">
                             <span class="spec-k">Версия игры</span>
-                            <span class="spec-v">Fabric 1.21.x</span>
+                            <span class="spec-v">Fabric 1.21.4 - 1.21.11</span>
                         </div>
                         <div class="spec-tile">
                             <span class="spec-k">Скрытие DWM</span>
@@ -303,7 +581,7 @@
                             <span class="faq-plus">+</span>
                         </button>
                         <div class="faq-collapse">
-                            <p>Откройте консоль <strong>PowerShell</strong> (от имени администратора), скопируйте команду из блока <strong>PowerShell Quick Run</strong> и вставьте в терминал. Запустите лаунчер Minecraft с версией <strong>Fabric 1.21.x</strong> — лоадер автоматически подключится к игре.</p>
+                            <p>Откройте консоль <strong>PowerShell</strong> (от имени администратора), скопируйте команду из блока <strong>PowerShell Quick Run</strong> и вставьте в терминал. Запустите лаунчер Minecraft с версией <strong>Fabric 1.21.4 - 1.21.11</strong> — лоадер автоматически подключится к игре.</p>
                         </div>
                     </div>
 
@@ -339,11 +617,11 @@
 
                     <div class="faq-row">
                         <button class="faq-trigger">
-                            <span>Поддерживаются ли другие версии кроме 1.21.x?</span>
+                            <span>Какие версии Minecraft поддерживаются?</span>
                             <span class="faq-plus">+</span>
                         </button>
                         <div class="faq-collapse">
-                            <p>Текущий билд оптимизирован специально под клиент <strong>Minecraft Fabric 1.21.x</strong> (включая 1.21, 1.21.1, 1.21.2). Поддержка других версий обновляется через GitHub репозиторий.</p>
+                            <p>Текущий билд оптимизирован специально под клиент <strong>Minecraft Fabric 1.21.4 - 1.21.11</strong>. Полная поддержка новейших снапшотов и релизов 1.21.x.</p>
                         </div>
                     </div>
                 </div>
@@ -364,14 +642,13 @@
                         </svg>
                     </div>
                     <span class="footer-logo-title">System</span>
-                    <p class="footer-tagline">Advanced Minecraft Fabric 1.21.x Client & Stream-Proof Loader</p>
+                    <p class="footer-tagline">Advanced Minecraft Fabric 1.21.4 - 1.21.11 Client & Stream-Proof Loader</p>
                 </div>
 
                 <div class="footer-nav-columns">
                     <a href="#features">Возможности</a>
                     <a href="#gui">Игровой GUI</a>
                     <a href="#hud">HUD элементы</a>
-                    <a href="#configs">Конфиги</a>
                     <a href="#download">Установка</a>
                     <a href="#faq">FAQ</a>
                     <a href="https://github.com/mellstroed/system-load" target="_blank">GitHub</a>
